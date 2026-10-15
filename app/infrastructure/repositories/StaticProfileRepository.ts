@@ -15,7 +15,7 @@ const profile: Profile = {
   ],
   email: 'daichi8120@gmail.com',
   socials: {
-    twitter: 'https://twitter.com/glound_1',
+    twitter: 'https://x.com/daichihotta',
     github: 'https://github.com/daichi-hotta',
     linkedin: 'https://www.linkedin.com/in/daichi-hotta-645565388/',
   },
