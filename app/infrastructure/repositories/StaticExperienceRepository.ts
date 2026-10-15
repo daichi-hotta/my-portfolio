@@ -75,10 +75,7 @@ const experiences: readonly Experience[] = [
       '卒業後の保守を見据えて問い合わせフォームを新設し、導入後のユーザー要望にも継続対応。',
     ],
     tech: ['Next.js', 'TypeScript', 'Supabase', 'NextAuth', 'Tailwind CSS'],
-    links: [
-      { type: 'live', url: 'https://abs-ems.vercel.app' },
-      { type: 'github', url: 'https://github.com/daichi-hotta/abs-ems' },
-    ],
+    links: [{ type: 'live', url: 'https://abs-ems.vercel.app' }],
   },
   {
     id: 'madoi',
@@ -93,7 +90,6 @@ const experiences: readonly Experience[] = [
       'Flutter / Dart のアプリ開発の流れを実プロダクトとして習熟。',
     ],
     tech: ['Flutter', 'Dart'],
-    links: [{ type: 'github', url: 'https://github.com/daichi-hotta/madoi' }],
   },
 ] as const;
 
