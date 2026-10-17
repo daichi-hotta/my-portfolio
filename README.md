@@ -73,9 +73,14 @@ npm run dev
 | コマンド | 内容 |
 |---|---|
 | `npm run dev` | 開発サーバー起動 |
-| `npm run build` | 本番ビルド |
-| `npm run start` | 本番サーバー起動 |
+| `npm run build` | 静的な HTML を `out/` に書き出す |
 | `npm run lint` | ESLint 実行 |
+
+`npm run start`（`next start`）は静的書き出し（`output: 'export'`）では動かない。ビルド結果は `npx serve@latest out` で確かめる。
+
+## 公開
+
+`main` に push すると、Cloudflare Workers Builds が `out/` を Worker `my-portfolio` として公開し、https://daichihotta.com で配信される。流れは [AGENTS.md](AGENTS.md) の Deployment を参照。
 
 ## コンテンツの追加・更新
 

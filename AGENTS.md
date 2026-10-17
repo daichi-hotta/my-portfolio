@@ -6,12 +6,21 @@ Guidance for coding agents (Claude Code, Codex, Cursor) working in this reposito
 
 ```bash
 npm run dev      # Start Next.js dev server (http://localhost:3000)
-npm run build    # Production build
-npm run start    # Run production build
+npm run build    # Static export to out/
 npm run lint     # ESLint (flat config: eslint.config.mjs)
 ```
 
-There is no test runner configured.
+There is no test runner configured. `npm run start` (`next start`) fails with `output: 'export'`; preview a build with `npx serve@latest out`.
+
+### Deployment
+
+Production is a static export served by a Cloudflare Worker. There is no Node server.
+
+1. `next.config.ts` sets `output: 'export'`, so `npm run build` writes static HTML to `out/`.
+2. `wrangler.jsonc` serves `out/` as the Worker's static assets. Unknown paths get `out/404.html` (`not_found_handling: "404-page"`). `workers_dev: false` keeps the site off `*.workers.dev`.
+3. Cloudflare Workers Builds builds and deploys the Worker `my-portfolio` on every push to `main`. The site lives at `daichihotta.com`; `www.daichihotta.com` and `glound.com` redirect there through Cloudflare rules outside this repo.
+
+Everything must stay statically renderable. Server Actions, ISR, middleware, request-dependent Route Handlers, and the default `next/image` loader do not work with a static export.
 
 ## Architecture
 
@@ -40,7 +49,7 @@ app/
     hooks/              Client-only React hooks
 ```
 
-### Data flow on each request
+### Data flow (at build time)
 
 1. `app/page.tsx` (Server Component, async) imports the three UseCase singletons from `app/composition.ts`.
 2. UseCases are called in parallel via `Promise.all` and their results are passed as props to Presentation components.
