@@ -1,0 +1,10 @@
+// Cloudflare Workers: serve the static export in out/ (next build with output: 'export')
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "my-portfolio",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import Link from 'next/link';
 import type { Profile } from '@/app/domain/entities/Profile';
 
 interface FooterProps {
@@ -59,9 +60,14 @@ export function Footer({ profile }: FooterProps) {
           )}
         </div>
 
-        <p className="mt-16 font-mono text-xs text-zinc-400">
-          © {new Date().getFullYear()} {profile.name}
-        </p>
+        <div className="mt-16 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-zinc-400">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <Link href="/privacy" className="hover:text-zinc-600">
+            Privacy Policy
+          </Link>
+        </div>
       </div>
     </footer>
   );
